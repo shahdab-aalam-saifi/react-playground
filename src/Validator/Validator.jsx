@@ -4,7 +4,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Joi from "joi";
-import React, { useState } from "react";
+import React from "react";
 
 const rows = [
   {
@@ -90,19 +90,16 @@ const rows = [
 ];
 
 export const Validator = () => {
-  const [valid, setValid] = useState(true);
   const schema = Joi.object({
     id: Joi.number().positive(),
     first_name: Joi.string().alphanum().min(3),
     last_name: Joi.string().alphanum().min(3),
-    gender: Joi.string().valid('Male', 'Female').required()
+    gender: Joi.string().valid("Male", "Female").required(),
   }).options({ stripUnknown: true });
 
   const getRowStyle = (id) => {
     const row = rows.find((item) => item.id === id);
-    const { error, value } = schema.validate(row);
-
-    console.log(error, value);
+    const { error } = schema.validate(row);
 
     return {
       backgroundColor:

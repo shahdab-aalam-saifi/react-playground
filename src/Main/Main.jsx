@@ -45,10 +45,13 @@ export const Main = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item>
+        <Grid item sm={12} md={12} lg={12}>
           <Card>
             <Validator />
           </Card>
+        </Grid>
+        <Grid item sm={12} md={12} lg={12}>
+          <Card>Kofax</Card>
         </Grid>
       </Grid>
     </Container>

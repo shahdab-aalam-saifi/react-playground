@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Edit from "../Edit";
+import Kofax from "../Kofax";
 import { toggleTreeExpand } from "../redux/actions";
 import Tree from "../Tree";
 import Validator from "../Validator";
@@ -51,7 +52,9 @@ export const Main = () => {
           </Card>
         </Grid>
         <Grid item sm={12} md={12} lg={12}>
-          <Card>Kofax</Card>
+          <Card>
+            <Kofax />
+          </Card>
         </Grid>
       </Grid>
     </Container>

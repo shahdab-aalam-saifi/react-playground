@@ -2,7 +2,6 @@ import React from "react";
 
 const kfx = window.KfxWebSDK;
 const Capture = kfx.Capture;
-const SelfieCapture = kfx.SelfieCapture;
 const captureOptions = {
   containerId: "webcam",
   preference: "camera",
@@ -10,29 +9,27 @@ const captureOptions = {
   preview: true,
 };
 
-const foo = () => {
-  console.log(foo)
-  Capture.create(captureOptions,
-    (createSuccess) => {
-      Capture.takePicture(
-        (imageData) => {
-          console.log("Captured Image", imageData, createSuccess);
-        },
-        (error) => {
-          console.log("takePicture", error);
-        }
-      );
+const createSuccessCallback = (createSuccess) => {
+  Capture.takePicture(
+    (imageData) => {
+      console.log("takePicture", imageData, createSuccess);
     },
     (error) => {
-      console.log("create", error);
+      console.log("takePicture", error);
     }
   );
+};
+
+const createFailureCallback = (error) => console.log(error);
+
+const captureImage = () => {
+  Capture.create(captureOptions, createSuccessCallback, createFailureCallback);
 };
 export const Kofax = () => {
   return (
     <>
-      {console.log("Kofax")}
-      <div id="webcam" onClick={foo}>Web Cam</div>
+      <div id="webcam"></div>
+      <button onClick={captureImage}>Capture</button>
     </>
   );
 };
